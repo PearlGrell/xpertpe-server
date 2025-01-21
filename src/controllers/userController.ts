@@ -161,22 +161,22 @@ export async function loginUser(req: Request, res: Response, next: NextFunction)
 }
 
 export async function sendPasswordResetEmail(req: Request, res: Response, next: NextFunction): Promise<void> {
-  const token = req.headers.authorization?.split(" ")[1];
-    if (!token) {
-      next(new Error("Token is required"));
+    const email = req.body.email;
+    if (!email) {
+      next(new Error("Email is required"));
     }
-    const id = await Token.token_verify(token!).catch(next);
 
     const userDatabase = await db.user.findUnique({
-      where: { id }
+      where: { email }
     }).catch(next);
+
     if (!userDatabase) {
       next(new Error("User not found"));
     }
 
     const user = new UserModel(userDatabase as tUser);
     user.sendPasswordReset().then(async () => {
-      await db.user.update({ where: { id }, data: user.toJSON() });
+      await db.user.update({ where: { email }, data: user.toJSON() });
       return response(res, 200, "Password reset email sent successfully", "message");
     }).catch(next);
 }
