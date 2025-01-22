@@ -1,16 +1,16 @@
 {
     "version": 2,
-    "builds": [
+    "rewrites": [
         {
-            "src": "build/index.js",
-            "use": "@vercel/node",
-            "config": { "includeFiles": ["build/**"] }
+            "source": "/(.*)",
+            "destination": "/build/server.js"
         }
     ],
-    "routes": [
+    "builds": [
         {
-            "src": "/(.*)",
-            "dest": "build/index.js"
+            "src": "build/server.js",
+            "use": "@vercel/node",
+            "config": { "includeFiles": ["build/**"] }
         }
     ]
 }
