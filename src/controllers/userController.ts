@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import db from "../database";
 import { sanitize_user } from "../helper/sanitize_user";
 import { response } from "../helper/response";
-import UserModel from "../model/userModel";
+import UserModel from "../models/userModel";
 import * as Token from "../helper/jwt_auth" ;
 import { tUser } from "../types";
 
