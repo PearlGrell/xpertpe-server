@@ -59,7 +59,7 @@ exports.deleteUser = deleteUser;
 const database_1 = __importDefault(require("../database"));
 const sanitize_user_1 = require("../helper/sanitize_user");
 const response_1 = require("../helper/response");
-const userModel_1 = __importDefault(require("../model/userModel"));
+const userModel_1 = __importDefault(require("../models/userModel"));
 const Token = __importStar(require("../helper/jwt_auth"));
 function getAllUsers(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
